@@ -19,6 +19,7 @@ def createBiorythm(dob, target):
     fig = figure()
     ax = fig.gca()
     plot(label, bio[0], label, bio[1], label, bio[2])
+    plot.title('Generating biorythm')
     legend(['Physical', 'Emotional', 'Intellectual']) # adding legend
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter('%b/%d'))
     show()
