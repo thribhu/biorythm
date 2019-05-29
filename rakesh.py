@@ -1,8 +1,13 @@
 
 from datetime import date
+import calendar
 import matplotlib.dates
 from pylab import *
 from numpy import array,sin,pi
+
+def findDay(date): 
+    born = datetime.datetime.strptime(date, '%d/%m/%Y').weekday() 
+    print(calendar.day_name[born]) 
 
 def createBiorythm(dob, target):
     t0 = dob.toordinal()
@@ -14,14 +19,17 @@ def createBiorythm(dob, target):
     t1 = target.toordinal()
     label = []
     for p in t:
-        print(date.fromordinal(p))
+        randomDate = date.fromordinal(p)
+        stringTime = randomDate.strftime('%d/%m/%Y')
+        findDay(stringTime)     
         label.append(date.fromordinal(p))
     fig = figure()
+    fig.suptitle('Generating your biorythm for 60 days')
     ax = fig.gca()
     plot(label, bio[0], label, bio[1], label, bio[2])
-    plot.title('Generating biorythm')
+
     legend(['Physical', 'Emotional', 'Intellectual']) # adding legend
-    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter('%b/%d'))
+    ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter('%d%a'))
     show()
 
 year = int(input('Enter birth year: '))
